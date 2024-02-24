@@ -20,17 +20,12 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "bootstrap",
-        "Environment": {
-          "Variables": {
-            "ANNOTATIONS_HANDLER": "FunctionHandler"
-          }
-        },
+        "Handler": "GetTenant::GetTenant.Function_FunctionHandler_Generated::FunctionHandler",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/",
+              "Path": "/{id}",
               "Method": "GET"
             }
           }

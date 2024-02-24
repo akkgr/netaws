@@ -11,6 +11,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddSingleton<IAmazonDynamoDB>(new AmazonDynamoDBClient());
-        services.AddSingleton<IProductsDao, DynamoDbProducts>();
+        services.AddSingleton<ITenantsRepo, TenantsDynamoDb>();
     }
 }

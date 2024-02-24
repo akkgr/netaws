@@ -1,9 +1,14 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as aws from "@pulumi/aws-native";
 
-// Create an AWS resource (S3 Bucket)
-const bucket = new aws.s3.Bucket("my-bucket");
+const lambda = new aws.lambda.Function("mylambda", {  
+    runtime: "dotnet8",
+    handler: "bootstrap",
+    role: "arn:aws:iam::761059477267:role/lambdaRole",
+    code: { 
+        s3Bucket: "akk-lambda-code",
+        s3Key: "bootstrap.zip"
+    }
+});
 
-// Export the name of the bucket
-export const bucketName = bucket.id;
+export const lambdaName = lambda.arn;

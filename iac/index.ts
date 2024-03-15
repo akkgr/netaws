@@ -1,4 +1,3 @@
-import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws-native";
 
 const lambda = new aws.lambda.Function("mylambda", {  

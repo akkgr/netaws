@@ -1,7 +1,9 @@
-using System.Text.Json.Serialization;
-using Amazon.Lambda.APIGatewayEvents;
-using Shared.Models;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+using Amazon.Lambda.APIGatewayEvents;
+
+using Shared.Models;
 
 namespace GetTenant;
 

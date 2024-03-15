@@ -1,7 +1,9 @@
-using Amazon.DynamoDBv2.Model;
-using Shared.Models;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
+using Amazon.DynamoDBv2.Model;
+
+using Shared.Models;
 
 namespace Shared.DataAccess
 {

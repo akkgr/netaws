@@ -1,9 +1,11 @@
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.Model;
-using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.Model;
+
+using Shared.Models;
 
 namespace Shared.DataAccess;
 

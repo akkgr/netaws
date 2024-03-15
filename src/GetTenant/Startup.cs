@@ -1,6 +1,8 @@
 using Amazon.DynamoDBv2;
 using Amazon.Lambda.Annotations;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using Shared.DataAccess;
 
 namespace GetTenant;

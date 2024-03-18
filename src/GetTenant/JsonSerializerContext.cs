@@ -12,4 +12,5 @@ namespace GetTenant;
 [JsonSerializable(typeof(List<string>))]
 [JsonSerializable(typeof(Dictionary<string, string>))]
 [JsonSerializable(typeof(Tenant))]
+[JsonSerializable(typeof(TenantQuery))]
 public partial class CustomJsonSerializerContext : JsonSerializerContext;

@@ -6,10 +6,7 @@
     "GetTenantFunctionFunctionHandlerGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
+        "Tool": "Amazon.Lambda.Annotations"
       },
       "Properties": {
         "Runtime": "dotnet8",
@@ -21,15 +18,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "GetTenant::GetTenant.Function_FunctionHandler_Generated::FunctionHandler",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/{id}",
-              "Method": "GET"
-            }
-          }
-        }
+        "Events": {}
       }
     }
   }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Amazon.DynamoDBv2.Model;
@@ -27,9 +28,10 @@ public class Function
     }
 
     [LambdaFunction]
-    [HttpApi(LambdaHttpMethod.Get, "/{id}")]
-    public async Task<Tenant> FunctionHandler(string id)
+    public async Task<Tenant> FunctionHandler(TenantQuery query, ILambdaContext context)
     {
-        return await _dataAccess.GetTenant(id) ?? throw new ResourceNotFoundException($"Tenant with id {id} not found");
+        var cts = new CancellationTokenSource(context.RemainingTime);
+        return await _dataAccess.GetTenant(query.Id, cts.Token) ??
+            throw new ResourceNotFoundException($"Tenant with id {query.Id} not found");
     }
 }

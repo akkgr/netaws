@@ -9,6 +9,7 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.Pulumi;
 
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
@@ -24,13 +25,14 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main() => Execute<Build>(x => x.Publish);
+    public static int Main() => Execute<Build>(x => x.Deploy);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Solution(GenerateProjects = true)] readonly Solution Solution;
 
+    AbsolutePath InfrastructureDirectory => RootDirectory / "iac";
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
     AbsolutePath PublishDirectory => RootDirectory / "publish";
@@ -64,7 +66,7 @@ class Build : NukeBuild
         });
 
     Target Publish => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Clean, Compile)
         .Executes(() =>
         {
             DotNetPublish(_ => _
@@ -75,6 +77,16 @@ class Build : NukeBuild
                         .SetOutput(PublishDirectory));
 
             PublishDirectory.ZipTo(ArtifactsDirectory / "bootstrap.zip");
+        });
+
+    Target Deploy => _ => _
+        .DependsOn(Publish)
+        .Executes(() =>
+        {
+            PulumiTasks.PulumiUp(_ => _
+                .SetCwd(InfrastructureDirectory)
+                .SetStack("dev")
+                .EnableYes());
         });
 
 }

@@ -13,12 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetTenant", "src\GetTenant\GetTenant.csproj", "{64D83930-18CA-482A-9376-91BC7DA5393C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{3C2261B5-AA8A-457D-AA1A-E50427230470}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C2261B5-AA8A-457D-AA1A-E50427230470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2261B5-AA8A-457D-AA1A-E50427230470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{513B6583-9C57-418E-8472-1D5794A8D24D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{513B6583-9C57-418E-8472-1D5794A8D24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{513B6583-9C57-418E-8472-1D5794A8D24D}.Release|Any CPU.ActiveCfg = Release|Any CPU

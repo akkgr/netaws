@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 using Amazon.DynamoDBv2.Model;
 using Amazon.Lambda.Annotations;
-using Amazon.Lambda.Annotations.APIGateway;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Serialization.SystemTextJson;
 

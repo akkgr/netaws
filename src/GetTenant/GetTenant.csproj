@@ -8,10 +8,6 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
-
-  <PropertyGroup>
-      <IsAotCompatible>true</IsAotCompatible>
-  </PropertyGroup>
     
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Annotations" Version="1.2.0" />

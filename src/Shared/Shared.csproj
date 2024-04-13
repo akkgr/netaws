@@ -4,10 +4,6 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-
-    <PropertyGroup>
-        <IsAotCompatible>true</IsAotCompatible>
-    </PropertyGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.301.21" />

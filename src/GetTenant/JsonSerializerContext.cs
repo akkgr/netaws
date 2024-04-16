@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 using Amazon.Lambda.APIGatewayEvents;
 
-using Shared.Models;
+using Tenants.Abstractions.Models;
 
 namespace GetTenant;
 

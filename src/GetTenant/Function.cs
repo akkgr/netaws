@@ -9,8 +9,8 @@ using Amazon.Lambda.Serialization.SystemTextJson;
 
 using GetTenant;
 
-using Shared.DataAccess;
-using Shared.Models;
+using Tenants.Abstractions.Models;
+using Tenants.Data.DynamoDb;
 
 
 [assembly: LambdaSerializer(typeof(SourceGeneratorLambdaJsonSerializer<CustomJsonSerializerContext>))]
@@ -19,9 +19,9 @@ namespace GetTenant;
 
 public class Function
 {
-    private readonly ITenantsRepo _dataAccess;
+    private readonly ITenantsRepository _dataAccess;
 
-    public Function(ITenantsRepo dataAccess)
+    public Function(ITenantsRepository dataAccess)
     {
         this._dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
     }
@@ -30,7 +30,17 @@ public class Function
     public async Task<Tenant> FunctionHandler(TenantQuery query, ILambdaContext context)
     {
         var cts = new CancellationTokenSource(context.RemainingTime);
-        return await _dataAccess.GetTenant(query.Id, cts.Token) ??
+        var dao = await _dataAccess.GetTenant(query.Id, cts.Token);
+
+        if (dao == null)
+        {
             throw new ResourceNotFoundException($"Tenant with id {query.Id} not found");
+        }
+
+        return new Tenant
+        {
+            Id = dao.Id,
+            Name = dao.Name,
+        };
     }
 }
